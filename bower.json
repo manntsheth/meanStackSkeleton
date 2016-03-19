@@ -1,0 +1,26 @@
+{
+  "name": "anotherday",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "manan <manntsheth@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.5.2",
+    "animate.css": "^3.5.1",
+    "font-awesome": "^4.5.0",
+    "bootstrap": "^3.3.6",
+    "angular": "^1.5.2"
+  }
+}
