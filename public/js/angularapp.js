@@ -1,5 +1,1 @@
-var myapp = angular.module('myapp', ['ngRoute']);
-
-myapp.controller('controllerOne', function ($scope) {
-    $scope.myVarOne = "Hello angular";
-});
+var myapp = angular.module('myapp', ['ngRoute', 'MainController', 'controllerTwo', 'angularroutes']);
