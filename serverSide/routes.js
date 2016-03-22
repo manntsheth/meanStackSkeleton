@@ -16,4 +16,8 @@ router.get('/somethingelse', function (req, res) {
 router.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, '../public/views/index.html')); // load our public/index.html file
 });
+
+router.post('/register', function (req, res) {
+    res.send("hi");
+});
 module.exports = router;
