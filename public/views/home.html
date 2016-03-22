@@ -1,15 +1,7 @@
 This is home page. {{thisControllerTag}}
 <br>
-<form>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Name</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Name" ng-model="user.name">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Rollno</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter RollNo" ng-model="user.rollno">
-    </div>
-
-    <button type="submit" class="btn btn-default" ng-click="postMethod(user)">Submit</button>
-
+<form class="form-signin">
+    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Name" ng-model="user.name">
+    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter RollNo" ng-model="user.rollno">
+    <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="postMethod(user)">Submit</button>
 </form>

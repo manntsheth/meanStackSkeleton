@@ -1,4 +1,4 @@
-angular.module('firstService', []).factory('serviceone', ['$http', function ($http) {
+angular.module('myapp').factory('serviceone', ['$http', function ($http) {
     var factory = {
         get: function () {
             return $http.get('/somethingels');

@@ -1,3 +1,3 @@
-angular.module('controllerTwo', []).controller('controllerTwo', function ($scope) {
+angular.module('myapp').controller('controllerTwo', function ($scope) {
     $scope.thisControllerTag = "Using ControllerTwo";
 });

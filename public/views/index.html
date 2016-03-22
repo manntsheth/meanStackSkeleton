@@ -10,24 +10,44 @@
     <script src="libs/jquery/dist/jquery.js"></script>
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
     <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrapsuperhero.css">
+    <link rel="stylesheet" href="libs/animate.css/animate.css">
+    <link rel="stylesheet" href="css/main.css">
     <!-- For angular -->
     <script src="libs/angular/angular.min.js"></script>
     <script src="libs/angular-route/angular-route.min.js"></script>
+    <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
     <!-- ANGULAR CUSTOM -->
     <script src="js/angularapp.js"></script>
-    <script src="js/angularroute.js"></script>
+    <script src="js/routes/angularroute.js"></script>
+    <script src="js/routes/uiroutes.js"></script>
     <script src="js/controllers/MainCtrl.js"></script>
     <script src="js/controllers/ControllerTwo.js"></script>
+    <script src="js/controllers/register.js"></script>
     <script src="js/services/firstService.js"></script>
+    <script src="js/services/alert.js"></script>
+    <script src="js/directives/validateEquals.js"></script>
 
 </head>
 
 <body ng-app="myapp">
     we did it!
+    <div class="container" ng-cloak>
+        <div class="header">
+            <ul class="nav nav-pills pull-right">
+                <li ui-sref-active="active">
+                    <a ui-sref="main">Home</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="register">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <div ng-view></div>
-
-
+    <div ui-view></div>
+    <div class="alert alert-{{alert.type}} animated main-alert" ng-class="{'flipInY':alert.show, 'flipOutY':!alert.show, 'alert-hidden': !alert.hasBeenShown}"><strong>{{alert.title}}</strong>{{alert.message}}</div>
 </body>
 
 </html>

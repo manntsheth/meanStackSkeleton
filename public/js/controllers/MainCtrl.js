@@ -1,4 +1,4 @@
-angular.module('MainController', []).controller('controllerOne', ['$scope', 'serviceone', function ($scope, serviceone) {
+angular.module('myapp').controller('controllerOne', ['$scope', 'serviceone', function ($scope, serviceone) {
     $scope.myVarOne = "Hello angular";
     $scope.thisControllerTag = "Using controllerOne";
     $scope.user = {
