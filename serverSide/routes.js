@@ -4,6 +4,7 @@ var router = express.Router();
 var path = require('path');
 var nerdController = require('./controllers/nerdController');
 
+
 router.post('/', function (req, res) {
     console.log('inside routes.js');
     console.log('request obj inside route.js' + JSON.stringify(req.body));
@@ -21,4 +22,5 @@ router.post('/register', function (req, res) {
     //res.send("hi");
     nerdController.create(req, res);
 });
+
 module.exports = router;

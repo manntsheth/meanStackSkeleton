@@ -24,7 +24,10 @@
     <script src="js/controllers/MainCtrl.js"></script>
     <script src="js/controllers/ControllerTwo.js"></script>
     <script src="js/controllers/register.js"></script>
+    <script src="js/controllers/header.js"></script>
+    <script src="js/controllers/logout.js"></script>
     <script src="js/services/firstService.js"></script>
+    <script src="js/services/authToken.js"></script>
     <script src="js/services/alert.js"></script>
     <script src="js/directives/validateEquals.js"></script>
 
@@ -33,17 +36,9 @@
 <body ng-app="myapp">
     we did it!
     <div class="container" ng-cloak>
-        <div class="header">
-            <ul class="nav nav-pills pull-right">
-                <li ui-sref-active="active">
-                    <a ui-sref="main">Home</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="register">Register</a>
-                </li>
-            </ul>
-        </div>
+        <div ng-include="'views/header.html'"></div>
     </div>
+
 
     <div ng-view></div>
     <div ui-view></div>
