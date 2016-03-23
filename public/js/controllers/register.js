@@ -8,7 +8,7 @@ angular.module('myapp').controller('RegisterCtrl', ['$scope', '$http', 'alert', 
         $http.post(url, user)
             .success(function (res) {
                 console.log("good");
-                alert('success', 'Account Created!', 'Welcome,' + req.user.email + '!');
+                alert('success', 'Account Created!', 'Welcome,' + res.user.email + '!');
                 authToken.setToken(res.token);
             })
             .error(function (err) {
