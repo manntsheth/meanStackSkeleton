@@ -34,7 +34,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 
-app.use('*', router);
+app.use('/', router);
 /*app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, '/public/views/index.html')); // load our public/index.html file
 });*/

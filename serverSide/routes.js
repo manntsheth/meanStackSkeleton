@@ -18,6 +18,7 @@ router.get('*', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
-    res.send("hi");
+    //res.send("hi");
+    nerdController.create(req, res);
 });
 module.exports = router;

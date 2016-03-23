@@ -1,7 +1,10 @@
 angular.module('myapp').controller('RegisterCtrl', ['$scope', '$http', 'alert', function ($scope, $http, alert) {
     $scope.submit = function () {
-        var url = '/';
-        var user = {};
+        var url = '/register';
+        var user = {
+            email: $scope.email,
+            password: $scope.password
+        };
         $http.post(url, user)
             .success(function (res) {
                 console.log("good");

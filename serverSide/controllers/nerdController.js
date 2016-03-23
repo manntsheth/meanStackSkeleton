@@ -8,8 +8,10 @@ exports.create = function (req, res) {
     console.log('req obj:' + JSON.stringify(req.body));
     console.log("Ned model is" + nerdModel);
     var entry = new nerdModel.nerdModel({
-        name: req.body.name,
-        rollno: req.body.rollno
+        name: req.body.name || '',
+        rollno: req.body.rollno || '',
+        email: req.body.email || '',
+        password: req.body.password || ''
     });
 
     entry.save(
@@ -19,9 +21,10 @@ exports.create = function (req, res) {
                 throw err;
             }
             console.log('Entry created');
+            res.status(200).send(entry.toJSON());
         }
     );
-    res.redirect(301, '/');
+    // res.redirect(301, '/');
 
 };
 
