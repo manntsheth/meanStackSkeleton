@@ -17,18 +17,23 @@
     <script src="libs/angular/angular.min.js"></script>
     <script src="libs/angular-route/angular-route.min.js"></script>
     <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="libs/angular-animate/angular-animate.js"></script>
     <!-- ANGULAR CUSTOM -->
     <script src="js/angularapp.js"></script>
     <script src="js/routes/angularroute.js"></script>
     <script src="js/routes/uiroutes.js"></script>
-    <script src="js/controllers/MainCtrl.js"></script>
+
     <script src="js/controllers/ControllerTwo.js"></script>
-    <script src="js/controllers/register.js"></script>
     <script src="js/controllers/header.js"></script>
+    <script src="js/controllers/jobs.js"></script>
     <script src="js/controllers/logout.js"></script>
+    <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/controllers/register.js"></script>
+
     <script src="js/services/firstService.js"></script>
     <script src="js/services/authToken.js"></script>
     <script src="js/services/alert.js"></script>
+
     <script src="js/directives/validateEquals.js"></script>
 
 </head>
@@ -38,10 +43,14 @@
     <div class="container" ng-cloak>
         <div ng-include="'views/header.html'"></div>
     </div>
+    <div class="row">
+        <div class="ui-view-container">
+            <div ng-view></div>
+            <div ui-view></div>
+        </div>
+    </div>
 
 
-    <div ng-view></div>
-    <div ui-view></div>
     <div class="alert alert-{{alert.type}} animated main-alert" ng-class="{'flipInY':alert.show, 'flipOutY':!alert.show, 'alert-hidden': !alert.hasBeenShown}"><strong>{{alert.title}}</strong>{{alert.message}}</div>
 </body>
 

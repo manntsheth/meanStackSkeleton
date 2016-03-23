@@ -11,6 +11,11 @@ angular.module('myapp').config(function ($urlRouterProvider, $stateProvider) {
             templateUrl: '/views/register.html',
             controller: 'RegisterCtrl'
         })
+        .state('jobs', {
+            url: '/jobs',
+            templateUrl: '/views/jobs.html',
+            controller: 'JobsCtrl'
+        })
         .state('logout', {
             url: '/logout',
             controller: 'LogoutCtrl'
