@@ -7,9 +7,6 @@ var payload;
 var token;
 
 exports.create = function (req, res) {
-    console.log('called create method');
-    console.log('req obj:' + JSON.stringify(req.body));
-    console.log("Ned model is" + nerdModel);
     var entry = new nerdModel.nerdModel({
         name: req.body.name || '',
         rollno: req.body.rollno || '',
@@ -34,10 +31,24 @@ exports.create = function (req, res) {
             });
         }
     );
-    // res.redirect(301, '/');
-
 };
 
+exports.getJobs = function (req, res) {
+    var jobs = ['Cook', 'SuperHero', 'Unicorn Wisperer', 'Toast Inspector'];
+    if (!req.headers.authorization) {
+        return res.status(401).send({
+            message: 'You are not authorized'
+        });
+    }
+    var token = req.headers.authorization.split(' ')[1];
+    var payload = jwt.decode(token, "shh..");
+    if (!payload.sub) {
+        res.status(401).send({
+            message: "Authentication failed"
+        });
+    }
+    res.json(jobs);
+};
 exports.getNote = function (req, res) {
     //var query = nerdModel.find();
     console.log('here');

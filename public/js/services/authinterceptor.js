@@ -3,7 +3,7 @@ angular.module('myapp').factory('authInterceptor', function (authToken) {
         request: function (config) {
             var token = authToken.getToken();
             if (token) {
-                config.headers.Authorization = 'Bearer' + token;
+                config.headers.Authorization = 'Bearer ' + token;
             }
             return config;
         },

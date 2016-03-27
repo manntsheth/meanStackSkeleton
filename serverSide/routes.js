@@ -4,14 +4,9 @@ var router = express.Router();
 var path = require('path');
 var nerdController = require('./controllers/nerdController');
 
-var jobs = ['Cook', 'SuperHero', 'Unicorn Wisperer', 'Toast Inspector'];
+
 router.get('/jobs', function (req, res) {
-    if (!req.headers.authorization) {
-        return res.status(401).send({
-            message: 'You are not authorized'
-        });
-    }
-    res.json(jobs);
+    nerdController.getJobs(req, res);
 });
 router.post('/', function (req, res) {
     console.log('inside routes.js');
