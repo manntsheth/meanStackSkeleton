@@ -49,6 +49,20 @@ exports.getJobs = function (req, res) {
     }
     res.json(jobs);
 };
+exports.login = function (req, res) {
+    var user1 = req.body;
+    var searchThis = {
+        email: user1.email
+    };
+    nerdModel.nerdModel.findOne(searchThis, function (err, user) {
+        if (err) {
+            throw err;
+        }
+        user.comparePasswords(user1.password)
+    });
+
+
+};
 exports.getNote = function (req, res) {
     //var query = nerdModel.find();
     console.log('here');

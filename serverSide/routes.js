@@ -18,6 +18,9 @@ router.get('/somethingelse', function (req, res) {
     return nerdController.getNote(req, res);
 });
 
+router.post('/login', function (req, res) {
+    return nerdController.login(req, res);
+});
 
 router.post('/register', function (req, res) {
     //res.send("hi");
