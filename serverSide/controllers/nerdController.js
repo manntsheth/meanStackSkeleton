@@ -13,11 +13,7 @@ exports.create = function (req, res) {
         email: req.body.email || '',
         password: req.body.password || ''
     });
-    payload = {
-        iss: req.hostname,
-        sub: entry._id
-    };
-    token = jwt.encode(payload, "shh..");
+
     entry.save(
         function (err) {
             if (err) {
@@ -25,10 +21,7 @@ exports.create = function (req, res) {
                 throw err;
             }
             console.log('Entry created');
-            res.status(200).send({
-                user: entry.toJSON(),
-                token: token
-            });
+            createSendToken(entry, res);
         }
     );
 };
@@ -58,11 +51,37 @@ exports.login = function (req, res) {
         if (err) {
             throw err;
         }
-        user.comparePasswords(user1.password)
+        if (!user) {
+            return res.status(401).send({
+                message: 'Wrong email/password'
+            });
+        }
+        user.comparePasswords(user1.password, function (err, isMatch) {
+            if (err) {
+                throw err;
+            }
+            if (!isMatch) {
+                return res.status(401).send({
+                    message: 'Wrong email/password'
+                });
+            }
+            createSendToken(user, res);
+        });
     });
 
 
 };
+
+function createSendToken(entry, res) {
+    payload = {
+        sub: entry._id
+    };
+    token = jwt.encode(payload, "shh..");
+    res.status(200).send({
+        user: entry.toJSON(),
+        token: token
+    });
+}
 exports.getNote = function (req, res) {
     //var query = nerdModel.find();
     console.log('here');

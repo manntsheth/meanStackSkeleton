@@ -24,6 +24,10 @@ nerdSchema.methods.toJSON = function () {
 };
 
 
+nerdSchema.methods.comparePasswords = function (password, callback) {
+    bcrypt.compare(password, this.password, callback);
+};
+
 nerdSchema.pre('save', function (next) {
     var user = this;
     if (!user.isModified('password')) return next();
