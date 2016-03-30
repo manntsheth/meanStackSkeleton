@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT | 5000;
-var passport = require('passport');
+
 var flash = require('connect-flash');
 
 var morgan = require('morgan');
@@ -29,9 +29,9 @@ app.use(express.static(__dirname + '/public'));
 /*app.use(session({
     secret: 'mypassportAuth'
 })); // session secret*/
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+
+//app.use(passport.session()); // persistent login sessions
+//app.use(flash()); // use connect-flash for flash messages stored in session
 
 
 app.use('/', router);

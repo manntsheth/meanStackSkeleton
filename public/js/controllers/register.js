@@ -1,15 +1,10 @@
-angular.module('myapp').controller('RegisterCtrl', ['$scope', '$http', 'alert', 'authToken', 'API_URL', function ($scope, $http, alert, authToken, API_URL) {
+angular.module('myapp').controller('RegisterCtrl', ['$scope', 'alert', 'auth', function ($scope, alert, auth) {
     $scope.submit = function () {
-        var url = API_URL + 'register';
-        var user = {
-            email: $scope.email,
-            password: $scope.password
-        };
-        $http.post(url, user)
+
+        auth.register($scope.email, $scope.password)
             .success(function (res) {
                 console.log("good");
                 alert('success', 'Account Created!', 'Welcome,' + res.user.email + '!');
-                authToken.setToken(res.token);
             })
             .error(function (err) {
                 console.log("bad");

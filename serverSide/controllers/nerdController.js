@@ -71,6 +71,19 @@ exports.login = function (req, res) {
 
 
 };
+exports.loginPassport = function (req, res, passport, next) {
+    passport.authenticate('local', function (err, user) {
+        if (err) {
+            next(err);
+        }
+        req.login(user, function (err) {
+            if (err) {
+                next(err);
+            }
+            createSendToken(user, res);
+        })
+    })(req, res, next);
+}
 
 function createSendToken(entry, res) {
     payload = {
@@ -86,4 +99,32 @@ exports.getNote = function (req, res) {
     //var query = nerdModel.find();
     console.log('here');
     //return query
+};
+
+exports.findUser = function (email, password, done) {
+    var searchThis = {
+        email: email
+    };
+    nerdModel.nerdModel.findOne(searchThis, function (err, user) {
+        if (err) {
+            return done(err);
+        }
+        if (!user) {
+            return done(null, false, {
+                message: 'Wrong email/password'
+            });
+        }
+        user.comparePasswords(password, function (err, isMatch) {
+            if (err) {
+                return done(err);
+            }
+            if (!isMatch) {
+                return done(null, false, {
+                    message: 'Wrong email/password'
+                });
+            }
+            return done(null, user);
+        });
+    });
+
 };
