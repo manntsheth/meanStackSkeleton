@@ -11,12 +11,18 @@ router.use(passport.initialize());
 passport.serializeUser(function (user, done) {
     done(null, user.id);
 });
-var strategy = new LocalStrategy({
+var strategyOptions = {
     usernameField: 'email'
-}, function (email, password, done) {
+};
+var loginStrategy = new LocalStrategy(strategyOptions, function (email, password, done) {
     nerdController.findUser(email, password, done);
 });
-passport.use(strategy);
+var registerStrategy = new LocalStrategy(strategyOptions, function (email, password, done) {
+    1
+    nerdController.registerUserStrategy(email, password, done);
+});
+passport.use('local-login', loginStrategy);
+passport.use('local-register', registerStrategy);
 router.get('/jobs', function (req, res) {
     nerdController.getJobs(req, res);
 });
@@ -30,13 +36,17 @@ router.get('/somethingelse', function (req, res) {
     return nerdController.getNote(req, res);
 });
 
-router.post('/login', function (req, res) {
+/*router.post('/login', function (req, res) {
     return nerdController.loginPassport(req, res, passport);
+});*/
+
+router.post('/login', passport.authenticate('local-login'), function (req, res) {
+    nerdController.createSendToken(req.user, res);
 });
 
-router.post('/register', function (req, res) {
+router.post('/register', passport.authenticate('local-register'), function (req, res) {
     //res.send("hi");
-    nerdController.create(req, res);
+    nerdController.createSendToken(req.user, res);
 });
 router.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, '../public/views/index.html')); // load our public/index.html file

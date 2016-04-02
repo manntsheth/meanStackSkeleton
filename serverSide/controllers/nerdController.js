@@ -95,6 +95,9 @@ function createSendToken(entry, res) {
         token: token
     });
 }
+exports.createSendToken = function (entry, res) {
+    return createSendToken(entry, res);
+};
 exports.getNote = function (req, res) {
     //var query = nerdModel.find();
     console.log('here');
@@ -127,4 +130,14 @@ exports.findUser = function (email, password, done) {
         });
     });
 
+};
+
+exports.registerUserStrategy = function (email, password, done) {
+    var newUser = new nerdModel.nerdModel({
+        email: email,
+        password: password
+    });
+    newUser.save(function (err) {
+        done(null, newUser);
+    });
 };
